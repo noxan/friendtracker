@@ -19,6 +19,10 @@
 		form = formDefaults;
 	}
 
+	async function deleteFriend(id: number) {
+		await db.friends.delete(id);
+	}
+
 	let friends = liveQuery(() => db.friends.toArray());
 </script>
 
@@ -29,8 +33,14 @@
 	<ul class="space-y-2">
 		{#if $friends}
 			{#each $friends as friend (friend.id)}
-				<li class="rounded-md bg-gray-100 p-2 shadow-sm">
-					{friend.name}, {friend.age}
+				<li class="flex items-center justify-between rounded-md bg-gray-100 p-2 shadow-sm">
+					<span>{friend.name}, {friend.age}</span>
+					<button
+						onclick={() => deleteFriend(friend.id)}
+						class="rounded bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
+					>
+						Delete
+					</button>
 				</li>
 			{/each}
 		{/if}
