@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
+	import { Trash2 } from 'lucide-svelte';
 
 	let formDefaults = {
 		name: '',
@@ -37,9 +38,9 @@
 					<span>{friend.name}, {friend.age}</span>
 					<button
 						onclick={() => deleteFriend(friend.id)}
-						class="rounded bg-red-500 px-2 py-1 text-sm text-white hover:bg-red-600"
+						class="rounded-full p-1 text-red-500 transition-colors hover:bg-red-100 hover:text-red-600"
 					>
-						Delete
+						<Trash2 size={20} />
 					</button>
 				</li>
 			{/each}
