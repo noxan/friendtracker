@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Input from '$lib/components/Input.svelte';
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 	import { Trash2 } from 'lucide-svelte';
@@ -49,28 +50,20 @@
 </div>
 
 <form {onsubmit} class="space-y-4">
-	<div class="space-y-2">
-		<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-		<input
-			id="name"
-			type="text"
-			bind:value={form.name}
-			placeholder="Enter friend's name"
-			class="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm
-				focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
-		/>
-	</div>
-	<div class="space-y-2">
-		<label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-		<input
-			id="age"
-			type="number"
-			bind:value={form.age}
-			placeholder="Enter friend's age"
-			class="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm
-				focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
-		/>
-	</div>
+	<Input
+		id="name"
+		label="Name"
+		type="text"
+		bind:value={form.name}
+		placeholder="Enter friend's name"
+	/>
+	<Input
+		id="age"
+		label="Age"
+		type="number"
+		bind:value={form.age}
+		placeholder="Enter friend's age"
+	/>
 	<button
 		type="submit"
 		class="w-full rounded-lg bg-gray-600 px-4 py-2 text-white
