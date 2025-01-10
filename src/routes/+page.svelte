@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Input from '$lib/components/Input.svelte';
+	import Button from '$lib/components/Button.svelte';
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 	import { Trash2 } from 'lucide-svelte';
@@ -37,12 +38,7 @@
 			{#each $friends as friend (friend.id)}
 				<li class="group flex items-center justify-between rounded-md bg-gray-100 p-2 shadow-sm">
 					<span>{friend.name}, {friend.age}</span>
-					<button
-						onclick={() => deleteFriend(friend.id)}
-						class="rounded-full p-1 text-gray-400 opacity-0 transition-all hover:text-red-600 active:scale-90 group-hover:opacity-100"
-					>
-						<Trash2 size={20} />
-					</button>
+					<Button variant="icon" icon={Trash2} onClick={() => deleteFriend(friend.id)} />
 				</li>
 			{/each}
 		{/if}
@@ -64,11 +60,5 @@
 		bind:value={form.age}
 		placeholder="Enter friend's age"
 	/>
-	<button
-		type="submit"
-		class="w-full rounded-lg bg-gray-600 px-4 py-2 text-white
-			hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-	>
-		Add Friend
-	</button>
+	<Button type="submit">Add Friend</Button>
 </form>
