@@ -11,12 +11,35 @@
 	};
 
 	let form = $state(formDefaults);
+	let errors = $state({ name: '', age: '' });
 
 	async function onsubmit(event: SubmitEvent) {
 		event.preventDefault();
 		const formValues = $state.snapshot(form);
+
+		// Reset errors
+		errors = { name: '', age: '' };
+		let hasErrors = false;
+
+		// Validate name
+		if (!formValues.name.trim()) {
+			errors.name = 'Name is required';
+			hasErrors = true;
+		}
+
+		// Validate age
+		if (!formValues.age) {
+			errors.age = 'Age is required';
+			hasErrors = true;
+		} else if (isNaN(parseInt(formValues.age)) || parseInt(formValues.age) <= 0) {
+			errors.age = 'Please enter a valid age';
+			hasErrors = true;
+		}
+
+		if (hasErrors) return;
+
 		await db.friends.add({
-			name: formValues.name,
+			name: formValues.name.trim(),
 			age: parseInt(formValues.age)
 		});
 		form = formDefaults;
@@ -52,6 +75,7 @@
 		type="text"
 		bind:value={form.name}
 		placeholder="Enter friend's name"
+		error={errors.name}
 	/>
 	<Input
 		id="age"
@@ -59,6 +83,7 @@
 		type="number"
 		bind:value={form.age}
 		placeholder="Enter friend's age"
+		error={errors.age}
 	/>
 	<Button type="submit">Add Friend</Button>
 </form>

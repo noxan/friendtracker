@@ -7,9 +7,17 @@
 		type?: InputType;
 		value: string | number;
 		placeholder?: string;
+		error?: string;
 	}
 
-	let { id, label, type = 'text', value = $bindable(), placeholder = '' }: Props = $props();
+	let {
+		id,
+		label,
+		type = 'text',
+		value = $bindable(),
+		placeholder = '',
+		error = ''
+	}: Props = $props();
 </script>
 
 <div class="space-y-2">
@@ -19,7 +27,12 @@
 		{type}
 		bind:value
 		{placeholder}
-		class="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm
+		class="block w-full rounded-lg border {error
+			? 'border-red-300'
+			: 'border-gray-300'} bg-white px-3 py-2 shadow-sm
             focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
 	/>
+	{#if error}
+		<p class="text-sm text-red-600">{error}</p>
+	{/if}
 </div>
