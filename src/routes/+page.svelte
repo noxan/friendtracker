@@ -34,11 +34,11 @@
 	<ul class="space-y-2">
 		{#if $friends}
 			{#each $friends as friend (friend.id)}
-				<li class="flex items-center justify-between rounded-md bg-gray-100 p-2 shadow-sm">
+				<li class="group flex items-center justify-between rounded-md bg-gray-100 p-2 shadow-sm">
 					<span>{friend.name}, {friend.age}</span>
 					<button
 						onclick={() => deleteFriend(friend.id)}
-						class="rounded-full p-1 text-red-500 transition-colors hover:bg-red-100 hover:text-red-600"
+						class="rounded-full p-1 text-gray-400 opacity-0 transition-all hover:text-red-600 active:scale-90 group-hover:opacity-100"
 					>
 						<Trash2 size={20} />
 					</button>
