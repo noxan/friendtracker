@@ -49,32 +49,33 @@
 </div>
 
 <form {onsubmit} class="space-y-4">
-	<div>
+	<div class="space-y-2">
 		<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
 		<input
-			type="text"
-			name="name"
 			id="name"
-			placeholder="Enter name"
+			type="text"
 			bind:value={form.name}
-			class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+			placeholder="Enter friend's name"
+			class="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm
+				focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
 		/>
 	</div>
-	<div>
+	<div class="space-y-2">
 		<label for="age" class="block text-sm font-medium text-gray-700">Age</label>
 		<input
-			type="number"
-			name="age"
 			id="age"
-			placeholder="Enter age"
+			type="number"
 			bind:value={form.age}
-			class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+			placeholder="Enter friend's age"
+			class="block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm
+				focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
 		/>
 	</div>
 	<button
 		type="submit"
-		class="w-full rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+		class="w-full rounded-lg bg-gray-600 px-4 py-2 text-white
+			hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
 	>
-		Add friend
+		Add Friend
 	</button>
 </form>
