@@ -1,4 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
+import dexieCloud from 'dexie-cloud-addon';
 
 interface Friend {
 	id: number;
@@ -6,7 +7,7 @@ interface Friend {
 	age: number;
 }
 
-const db = new Dexie('FriendsDatabase') as Dexie & {
+const db = new Dexie('FriendsDatabase', { addons: [dexieCloud] }) as Dexie & {
 	friends: EntityTable<
 		Friend,
 		'id' // primary key "id" (for the typings only)
