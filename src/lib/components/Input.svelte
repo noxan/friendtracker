@@ -1,11 +1,15 @@
 <script lang="ts">
 	type InputType = 'text' | 'number';
 
-	export let id: string;
-	export let label: string;
-	export let type: InputType = 'text';
-	export let value: string | number;
-	export let placeholder: string = '';
+	interface Props {
+		id: string;
+		label: string;
+		type?: InputType;
+		value: string | number;
+		placeholder?: string;
+	}
+
+	let { id, label, type = 'text', value = $bindable(), placeholder = '' }: Props = $props();
 </script>
 
 <div class="space-y-2">
