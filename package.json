@@ -33,6 +33,7 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"dexie": "^4.0.10"
+		"dexie": "^4.0.10",
+		"lucide-svelte": "^0.471.0"
 	}
 }
