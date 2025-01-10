@@ -2,12 +2,21 @@
 	import { db } from '$lib/db';
 	import { liveQuery } from 'dexie';
 
-	function onsubmit(event: SubmitEvent) {
+	let formDefaults = {
+		name: '',
+		age: ''
+	};
+
+	let form = $state(formDefaults);
+
+	async function onsubmit(event: SubmitEvent) {
 		event.preventDefault();
-		const formData = new FormData(event.target as HTMLFormElement);
-		const name = formData.get('name') as string;
-		const age = parseInt(formData.get('age') as string);
-		db.friends.add({ name, age });
+		const formValues = $state.snapshot(form);
+		await db.friends.add({
+			name: formValues.name,
+			age: parseInt(formValues.age)
+		});
+		form = formDefaults;
 	}
 
 	let friends = liveQuery(() => db.friends.toArray());
@@ -27,9 +36,9 @@
 
 	<form {onsubmit}>
 		<label for="name">Name</label>
-		<input type="text" name="name" id="name" placeholder="Name" />
+		<input type="text" name="name" id="name" placeholder="Name" bind:value={form.name} />
 		<label for="age">Age</label>
-		<input type="number" name="age" id="age" placeholder="Age" />
+		<input type="number" name="age" id="age" placeholder="Age" bind:value={form.age} />
 		<button type="submit">Add friend</button>
 	</form>
 </div>
