@@ -19,5 +19,10 @@ db.version(1).stores({
 	friends: '++id, name, age' // primary key "id" (for the runtime!)
 });
 
+db.cloud.configure({
+	databaseUrl: 'https://z2yk6a7lw.dexie.cloud'
+	// requireAuth: true
+});
+
 export type { Friend };
 export { db };
