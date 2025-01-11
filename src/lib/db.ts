@@ -16,7 +16,7 @@ const db = new Dexie('FriendsDatabase', { addons: [dexieCloud] }) as Dexie & {
 
 // Schema declaration:
 db.version(1).stores({
-	friends: '++id, name, age' // primary key "id" (for the runtime!)
+	friends: '@id, name, age' // primary key "id" (for the runtime!)
 });
 
 db.cloud.configure({
